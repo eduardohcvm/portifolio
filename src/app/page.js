@@ -1,10 +1,17 @@
-import Image from "next/image";
 import LandingPage from "./landingPage";
 import MenuSanduiche from "./sandwichMenu";
+import SobreMim from "./sobreMim/page";
+
+
+
 
 export default function Home() {
   return (
-    
-    <LandingPage />
+    <>
+
+      <MenuSanduiche />
+      <LandingPage />
+      <SobreMim />
+    </>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +31,7 @@ const HamburgerMenu = () => {
             className="mb-12 focus:outline-none text-white"
             onClick={() => setIsOpen(false)}
           >
-            {/* Você pode adicionar um ícone de fechar aqui se desejar */}
+            
           </button>
           {/* Seção de Identidade */}
           <div className="mb-4 justify-center flex">
@@ -43,10 +44,18 @@ const HamburgerMenu = () => {
           </div>
           {/* Itens de Navegação */}
           <nav className="flex flex-col space-y-4">
-            <a href="#sobre-mim" className="hover:text-gray-300 border-b">Sobre Mim</a>
-            <a href="#minhas-skills" className="hover:text-gray-300 border-b">Minhas Skills</a>
-            <a href="#trabalho" className="hover:text-gray-300 border-b">Trabalho</a>
-            <a href="#contato" className="hover:text-gray-300 border-b">Contato</a>
+            <Link href="/sobreMim" className="hover:text-gray-300 border-b">
+              Sobre Mim
+            </Link>
+            <Link href="/minhas-skills" className="hover:text-gray-300 border-b">
+              Minhas Skills
+            </Link>
+            <Link href="/trabalho" className="hover:text-gray-300 border-b">
+              Trabalho
+            </Link>
+            <Link href="/contato" className="hover:text-gray-300 border-b">
+              Contato
+            </Link>
           </nav>
         </div>
       </div>
