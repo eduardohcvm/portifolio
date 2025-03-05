@@ -35,8 +35,10 @@ const HamburgerMenu = () => {
           </button>
           {/* Seção de Identidade */}
           <div className="mb-4 justify-center flex">
+            <Link href={"/"} className="flex items-center border margin-auto border-8px rounded-full p-6">
             <span className="glow-letter text-4xl inline-block mr-1">E</span>
             <span className="glow-letter text-4xl inline-block">H</span>
+            </Link>          
           </div>
           <div className="mb-6">
             <h2 className="text-xl">Eduardo Henrique</h2>
@@ -47,7 +49,7 @@ const HamburgerMenu = () => {
             <Link href="/sobreMim" className="hover:text-gray-300 border-b">
               Sobre Mim
             </Link>
-            <Link href="/minhas-skills" className="hover:text-gray-300 border-b">
+            <Link href="/minhasSkills" className="hover:text-gray-300 border-b">
               Minhas Skills
             </Link>
             <Link href="/trabalho" className="hover:text-gray-300 border-b">
