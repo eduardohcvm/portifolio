@@ -52,8 +52,8 @@ const HamburgerMenu = () => {
             <Link href="/minhasSkills" className="hover:text-gray-300 border-b">
               Minhas Skills
             </Link>
-            <Link href="/trabalho" className="hover:text-gray-300 border-b">
-              Trabalho
+            <Link href="/trabalhos" className="hover:text-gray-300 border-b">
+              Trabalhos
             </Link>
             <Link href="/contato" className="hover:text-gray-300 border-b">
               Contato

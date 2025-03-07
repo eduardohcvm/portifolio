@@ -28,35 +28,28 @@ export default function MinhasSkills() {
       description:
         "Framework web em Python que segue o padrão MTV e facilita o desenvolvimento rápido.",
       experience: "1 ano de experiência criando aplicações web robustas.",
-      image: "/django.png",
+      image: "/django.jpg",
     },
     {
       name: "Python",
       description:
         "Linguagem versátil, usada em data science, web, automação e muito mais.",
       experience: "3 anos de experiência, incluindo data science e web development.",
-      image: "/python.png",
-    },
-    {
-      name: "ESL",
-      description:
-        "ESL pode se referir a várias tecnologias (ex.: ESLint). Ajuste conforme necessidade.",
-      experience: "Experiência variada, dependendo do contexto do ESL.",
-      image: "/esl.png",
+      image: "/python.jpg",
     },
     {
       name: "Typescript",
       description:
         "Superset do JavaScript que adiciona tipagem estática, facilitando manutenção e escalabilidade.",
-      experience: "1 ano de experiência em projetos front e backend.",
-      image: "/typescript.png",
+      experience: "1 ano de experiência em projetos front-end.",
+      image: "/ts_logo.png",
     },
     {
       name: "Javascript",
       description:
         "Linguagem de programação para web, utilizada tanto no front quanto no backend.",
       experience: "3 anos de experiência com diversos frameworks e bibliotecas.",
-      image: "/javascript.png",
+      image: "/js_logo.png",
     },
     {
       name: "Tailwind",
@@ -66,13 +59,13 @@ export default function MinhasSkills() {
       image: "/tailwind.png",
     },
     {
-      name: "Html",
+      name: "Html 5",
       description: "Linguagem de marcação base para a estruturação de páginas web.",
       experience: "3 anos de experiência criando sites e aplicações web.",
       image: "/html.png",
     },
     {
-      name: "Css",
+      name: "Css 3",
       description:
         "Linguagem de estilos utilizada para definir aparência e layout de páginas web.",
       experience: "3 anos de experiência em estilização, animações e responsividade.",
@@ -99,9 +92,10 @@ export default function MinhasSkills() {
 
       {/* Conteúdo principal */}
       <div className="flex items-start justify-center min-h-screen p-6">
+        
         {/* Coluna de Ícones (Centro) */}
         <div className="w-2/3 flex flex-col items-center">
-          <h1 className="text-3xl font-bold mb-6">Minhas Skills</h1>
+          <h1 className="text-3xl font-bold mb-6">Minhas Skills Técnicas</h1>
 
           {/* Grid de ícones */}
           <div className="grid grid-cols-3 sm:grid-cols-4 gap-6">
@@ -110,17 +104,17 @@ export default function MinhasSkills() {
                 key={index}
                 onClick={() => handleSkillClick(skill)}
                 className={`
-                  relative w-16 h-16 bg-gray-700 bg-opacity-30
-                  rounded-md flex items-center justify-center
+                  relative w-32 h-32 bg-gray-700 bg-opacity-30
+                  rounded-md overflow-hidden
                   transition-transform duration-300 hover:scale-105
                 `}
               >
+                {/* Imagem preenche todo o card */}
                 <Image
                   src={skill.image}
                   alt={skill.name}
-                  width={40}
-                  height={40}
-                  className="object-contain"
+                  fill
+                  className="object-cover"
                 />
               </button>
             ))}
