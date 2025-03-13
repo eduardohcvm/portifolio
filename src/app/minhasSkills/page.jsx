@@ -7,6 +7,9 @@ export default function MinhasSkills() {
   // Armazena as últimas 3 skills clicadas (a 0 é a mais recente)
   const [recentSkills, setRecentSkills] = useState([]);
 
+  // Armazena o nome da skill que está ampliada (se houver)
+  const [expandedSkillName, setExpandedSkillName] = useState(null);
+
   // Array de todas as skills disponíveis
   const skills = [
     {
@@ -86,6 +89,12 @@ export default function MinhasSkills() {
     });
   };
 
+  // Limpa todos os cards da pilha
+  const handleClearAll = () => {
+    setRecentSkills([]);
+    setExpandedSkillName(null);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-black to-gray-800 text-white">
       <HamburgerMenu />
@@ -123,25 +132,64 @@ export default function MinhasSkills() {
 
         {/* Coluna com a pilha das 3 últimas skills */}
         <div className="w-1/3 ml-4 relative min-h-[300px]">
-          {recentSkills.map((skill, i) => (
-            <div
-              key={skill.name}
+          {/* Botão "X" vermelho para limpar todos os cards */}
+          {recentSkills.length > 0 && (
+            <button
+              onClick={handleClearAll}
               className={`
-                absolute p-4 w-64 bg-gray-700 bg-opacity-30 rounded-md
-                animate-fadeIn shadow-lg transition-all duration-300
+                absolute top-0 right-0 bg-red-600 text-white p-2
+                rounded-full shadow-lg z-50 hover:bg-red-500
               `}
-              style={{
-                // Cada card fica levemente deslocado (i=0 é o topo)
-                top: `${i * 1.5}rem`,
-                left: `${i * 1.5}rem`,
-                zIndex: 10 - i,
-              }}
             >
-              <h2 className="text-xl font-semibold mb-2">{skill.name}</h2>
-              <p className="text-sm mb-1">{skill.description}</p>
-              <p className="text-xs text-gray-300 italic">{skill.experience}</p>
-            </div>
-          ))}
+              X
+            </button>
+          )}
+
+          {recentSkills.map((skill, i) => {
+            // Verifica se este card é o do topo (i === 0)
+            const isTopCard = i === 0;
+            // Verifica se este card está ampliado
+            const isExpanded = skill.name === expandedSkillName;
+
+            return (
+              <div
+                key={skill.name}
+                className={`
+                  absolute p-4 bg-gray-700 bg-opacity-30 rounded-md
+                  animate-fadeIn shadow-lg transition-all duration-300
+                  ${isExpanded ? "w-80" : "w-64"}
+                `}
+                style={{
+                  // Cada card fica levemente deslocado (i=0 é o topo)
+                  top: `${i * 1.5}rem`,
+                  left: `${i * 1.5}rem`,
+                  zIndex: 10 - i,
+                }}
+              >
+                <h2 className="text-xl font-semibold mb-2">{skill.name}</h2>
+                <p className="text-sm mb-1">{skill.description}</p>
+                <p className="text-xs text-gray-300 italic">{skill.experience}</p>
+
+                {/* Botão para ampliar ou voltar ao normal (somente no card do topo) */}
+                {isTopCard && (
+                  <button
+                    onClick={() => {
+                      if (isExpanded) {
+                        // Se já está expandido, volta ao normal
+                        setExpandedSkillName(null);
+                      } else {
+                        // Expande o card
+                        setExpandedSkillName(skill.name);
+                      }
+                    }}
+                    className="mt-2 bg-gray-600 hover:bg-gray-500 text-white px-2 py-1 rounded"
+                  >
+                    {isExpanded ? "Voltar" : "Ampliar"}
+                  </button>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
 

@@ -20,18 +20,9 @@ export default function Trabalhos() {
         "/images/inovathys4.png",
       ],
       technologies: [
-        {
-          name: "React",
-          image: "/react.png",
-        },
-        {
-          name: "Django",
-          image: "/django.jpg",
-        },
-        {
-          name: "Tailwind",
-          image: "/tailwind.png",
-        },
+        { name: "React", image: "/react.png" },
+        { name: "Django", image: "/django.jpg" },
+        { name: "Tailwind", image: "/tailwind.png" },
       ],
     },
     {
@@ -48,18 +39,9 @@ export default function Trabalhos() {
         "/images/mibe4.png",
       ],
       technologies: [
-        {
-          name: "Node",
-          image: "/node.png",
-        },
-        {
-          name: "React",
-          image: "/react.png",
-        },
-        {
-          name: "Css",
-          image: "/css.png",
-        },
+        { name: "Node", image: "/node.png" },
+        { name: "React", image: "/react.png" },
+        { name: "Css", image: "/css.png" },
       ],
     },
     {
@@ -75,18 +57,9 @@ export default function Trabalhos() {
         "/images/caju4.png",
       ],
       technologies: [
-        {
-          name: "Javascript",
-          image: "/javascript.png",
-        },
-        {
-          name: "Tailwind",
-          image: "/tailwind.png",
-        },
-        {
-          name: "Html",
-          image: "/html.png",
-        },
+        { name: "Javascript", image: "/js_logo.png" },
+        { name: "Tailwind", image: "/tailwind.png" },
+        { name: "Html", image: "/html.png" },
       ],
     },
     {
@@ -102,18 +75,9 @@ export default function Trabalhos() {
         "/images/headers4.png",
       ],
       technologies: [
-        {
-          name: "Typescript",
-          image: "/typescript.png",
-        },
-        {
-          name: "React",
-          image: "/react.png",
-        },
-        {
-          name: "Node",
-          image: "/node.png",
-        },
+        { name: "Typescript", image: "/ts_logo.png" },
+        { name: "React", image: "/react.png" },
+        { name: "Node", image: "/node.png" },
       ],
     },
     {
@@ -130,35 +94,22 @@ export default function Trabalhos() {
         "/images/famosos4.png",
       ],
       technologies: [
-        {
-          name: "Python",
-          image: "/python.png",
-        },
-        {
-          name: "ESL",
-          image: "/esl.png",
-        },
-        {
-          name: "Django",
-          image: "/django.png",
-        },
+        { name: "Python", image: "/python.jpg" },
+        { name: "Django", image: "/django.jpg" },
       ],
     },
   ];
 
   // Um estado para cada projeto controlar o slide atual
-  // Ex.: se tivermos 5 projetos, criaremos um array de 5 posições, cada uma iniciando em 0
-  const [currentSlides, setCurrentSlides] = useState(
-    projects.map(() => 0)
-  );
+  // Se temos 5 projetos, criamos um array de 5 posições, cada uma iniciando em 0
+  const [currentSlides, setCurrentSlides] = useState(projects.map(() => 0));
 
   // Função para ir ao slide anterior
   const handlePrev = (projIndex) => {
     setCurrentSlides((prev) => {
       const newSlides = [...prev];
       const totalImages = projects[projIndex].images.length;
-      newSlides[projIndex] =
-        (prev[projIndex] - 1 + totalImages) % totalImages; 
+      newSlides[projIndex] = (prev[projIndex] - 1 + totalImages) % totalImages;
       return newSlides;
     });
   };
@@ -168,7 +119,7 @@ export default function Trabalhos() {
     setCurrentSlides((prev) => {
       const newSlides = [...prev];
       const totalImages = projects[projIndex].images.length;
-      newSlides[projIndex] = (prev[projIndex] + 1) % totalImages; 
+      newSlides[projIndex] = (prev[projIndex] + 1) % totalImages;
       return newSlides;
     });
   };
@@ -215,11 +166,10 @@ export default function Trabalhos() {
             {/* Card grande explicando o projeto */}
             <div className="bg-gray-700 bg-opacity-30 mt-4 p-6 rounded-md">
               <h2 className="text-2xl font-semibold mb-2">{project.name}</h2>
-              <p className="text-sm mb-4 whitespace-pre-line">
-                {project.description}
-              </p>
+              <p className="text-sm mb-4 whitespace-pre-line">{project.description}</p>
 
               <div className="flex flex-col md:flex-row md:items-start md:justify-between">
+                {/* Lista de tecnologias */}
                 <div className="md:w-2/3">
                   <h3 className="text-lg font-bold mb-2">Tecnologias Utilizadas:</h3>
                   <ul className="list-disc list-inside text-sm">
@@ -231,12 +181,15 @@ export default function Trabalhos() {
                   </ul>
                 </div>
 
-                {/* Card com as fotos das tecnologias */}
-                <div className="mt-4 md:mt-0 md:w-1/3 md:ml-4 bg-gray-800 bg-opacity-40 p-3 rounded-md">
+                {/* Card com as fotos das tecnologias (com RGB glow) */}
+                <div className="mt-4 md:mt-0 md:w-1/3 md:ml-4 p-3 rounded-md rainbow-border">
                   <h4 className="text-md font-semibold mb-2">Ícones das Stacks</h4>
                   <div className="grid grid-cols-3 gap-2">
                     {project.technologies.map((tech) => (
-                      <div key={tech.name} className="relative w-16 h-16 bg-gray-600 rounded-md overflow-hidden">
+                      <div
+                        key={tech.name}
+                        className="relative w-16 h-16 bg-gray-600 rounded-md overflow-hidden"
+                      >
                         <Image
                           src={tech.image}
                           alt={tech.name}
@@ -252,6 +205,32 @@ export default function Trabalhos() {
           </div>
         ))}
       </div>
+
+      {/* CSS para o RGB glow ao redor do card */}
+      <style jsx>{`
+        .rainbow-border {
+          position: relative;
+          animation: rgbGlow 2s linear infinite;
+        }
+
+        @keyframes rgbGlow {
+          0% {
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.7);
+          }
+          25% {
+            box-shadow: 0 0 10px rgba(223, 10, 10, 0.27), 0 0 20px rgba(219, 23, 16, 0.7);
+          }
+          50% {
+            box-shadow: 0 0 10px rgba(0, 0, 255, 0.7), 0 0 20px rgba(0, 0, 255, 0.7);
+          }
+          75% {
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.7), 0 0 20px rgba(255, 0, 255, 0.7);
+          }
+          100% {
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.7);
+          }
+        }
+      `}</style>
     </div>
   );
 }
